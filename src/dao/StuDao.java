@@ -12,7 +12,8 @@ public class StuDao {
 		String sql = "select sname,mdate,message from messageboard order by Mdate desc";
 		List<Message> list = dbh.query(sql,Message.class);
 		String ms = "学生留言：";
-		for(Message mss : list) {
+		for(int i=0;i<3;i++) {
+			Message mss=list.get(i);
 			ms = ms + String.valueOf(mss);
 		}
 //		String ms = String.valueOf(list);

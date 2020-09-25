@@ -65,74 +65,79 @@ public class PwdChangeWin extends Dialog {
 	 */
 	private void createContents() {
 		shell = new Shell(getParent(), SWT.DIALOG_TRIM | SWT.PRIMARY_MODAL);
-		shell.setSize(413, 338);
+		shell.setText("忘记密码");
+		shell.setSize(422, 364);
 		shell.setLayout(new FormLayout());
 		SwtHelper.center(shell);
 		
 		Label label = new Label(shell, SWT.NONE);
 		FormData fd_label = new FormData();
+		fd_label.left = new FormAttachment(0, 102);
+		fd_label.top = new FormAttachment(0, 35);
 		label.setLayoutData(fd_label);
 		label.setBounds(63, 31, 54, 20);
 		label.setText("用户名:");
 		
 		Label label_1 = new Label(shell, SWT.NONE);
 		FormData fd_label_1 = new FormData();
-		fd_label_1.right = new FormAttachment(label, 0, SWT.RIGHT);
+		fd_label_1.top = new FormAttachment(label, 42);
+		fd_label_1.left = new FormAttachment(label, 0, SWT.LEFT);
 		label_1.setLayoutData(fd_label_1);
 		label_1.setText("新密码:");
 		label_1.setBounds(63, 88, 54, 20);
 		
 		Label label_1_1 = new Label(shell, SWT.NONE);
 		FormData fd_label_1_1 = new FormData();
-		fd_label_1_1.top = new FormAttachment(label, 85);
 		fd_label_1_1.right = new FormAttachment(label, 0, SWT.RIGHT);
 		label_1_1.setLayoutData(fd_label_1_1);
 		label_1_1.setText("确认密码:");
 		label_1_1.setBounds(63, 142, 71, 20);
 		
 		Label label_1_2 = new Label(shell, SWT.NONE);
+		fd_label_1_1.bottom = new FormAttachment(label_1_2, -40);
 		FormData fd_label_1_2 = new FormData();
-		fd_label_1_2.top = new FormAttachment(label_1_1, 26);
-		fd_label_1_2.left = new FormAttachment(label, 0, SWT.LEFT);
+		fd_label_1_2.right = new FormAttachment(label, 0, SWT.RIGHT);
 		label_1_2.setLayoutData(fd_label_1_2);
 		label_1_2.setText("验证码:");
 		label_1_2.setBounds(63, 194, 54, 20);
 		
 		textName = new Text(shell, SWT.BORDER);
-		fd_label.top = new FormAttachment(textName, 0, SWT.TOP);
-		fd_label.right = new FormAttachment(textName, -24);
 		FormData fd_textName = new FormData();
-		fd_textName.top = new FormAttachment(0, 64);
-		fd_textName.right = new FormAttachment(100, -159);
+		fd_textName.left = new FormAttachment(label, 6);
+		fd_textName.right = new FormAttachment(label, 148, SWT.RIGHT);
+		fd_textName.top = new FormAttachment(label, -3, SWT.TOP);
 		textName.setLayoutData(fd_textName);
 		textName.setBounds(123, 25, 73, 26);
 		
 		textPwd = new Text(shell, SWT.BORDER);
-		fd_label_1.top = new FormAttachment(textPwd, 3, SWT.TOP);
 		FormData fd_textPwd = new FormData();
-		fd_textPwd.top = new FormAttachment(textName, 27);
 		fd_textPwd.right = new FormAttachment(textName, 0, SWT.RIGHT);
+		fd_textPwd.left = new FormAttachment(label_1, 6);
+		fd_textPwd.top = new FormAttachment(label_1, -3, SWT.TOP);
 		textPwd.setLayoutData(fd_textPwd);
 		textPwd.setBounds(123, 82, 73, 26);
 		
 		textPwd2 = new Text(shell, SWT.BORDER);
 		FormData fd_textPwd2 = new FormData();
 		fd_textPwd2.top = new FormAttachment(label_1_1, -3, SWT.TOP);
-		fd_textPwd2.left = new FormAttachment(textName, 0, SWT.LEFT);
+		fd_textPwd2.left = new FormAttachment(label_1_1, 6);
+		fd_textPwd2.right = new FormAttachment(100, -117);
 		textPwd2.setLayoutData(fd_textPwd2);
 		textPwd2.setBounds(140, 136, 73, 26);
 		
 		textYzm = new Text(shell, SWT.BORDER);
+		fd_label_1_2.top = new FormAttachment(0, 218);
 		FormData fd_textYzm = new FormData();
-		fd_textYzm.top = new FormAttachment(label_1_2, 0, SWT.TOP);
-		fd_textYzm.right = new FormAttachment(textName, 0, SWT.RIGHT);
+		fd_textYzm.right = new FormAttachment(label_1_2, 117, SWT.RIGHT);
+		fd_textYzm.left = new FormAttachment(label_1_2, 6);
+		fd_textYzm.top = new FormAttachment(label_1_2, -3, SWT.TOP);
 		textYzm.setLayoutData(fd_textYzm);
 		textYzm.setBounds(140, 191, 73, 26);
 		
 		Button button = new Button(shell, SWT.NONE);
 		FormData fd_button = new FormData();
 		fd_button.top = new FormAttachment(label_1_2, -5, SWT.TOP);
-		fd_button.left = new FormAttachment(textYzm, 30);
+		fd_button.right = new FormAttachment(100, -22);
 		button.setLayoutData(fd_button);
 		button.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -167,16 +172,18 @@ public class PwdChangeWin extends Dialog {
 			}
 		});
 		FormData fd_button_1 = new FormData();
-		fd_button_1.bottom = new FormAttachment(100, -10);
-		fd_button_1.left = new FormAttachment(label, 0, SWT.LEFT);
+		fd_button_1.left = new FormAttachment(0, 75);
 		button_1.setLayoutData(fd_button_1);
 		button_1.setBounds(57, 246, 98, 30);
 		button_1.setText("确认");
 		
 		Button btnNewButton = new Button(shell, SWT.NONE);
+		fd_button_1.top = new FormAttachment(btnNewButton, 0, SWT.TOP);
+		fd_button_1.right = new FormAttachment(btnNewButton, -68);
 		FormData fd_btnNewButton = new FormData();
-		fd_btnNewButton.top = new FormAttachment(button_1, 0, SWT.TOP);
-		fd_btnNewButton.left = new FormAttachment(button_1, 98);
+		fd_btnNewButton.bottom = new FormAttachment(100, -21);
+		fd_btnNewButton.right = new FormAttachment(100, -64);
+		fd_btnNewButton.left = new FormAttachment(0, 243);
 		btnNewButton.setLayoutData(fd_btnNewButton);
 		btnNewButton.setBounds(246, 246, 98, 30);
 		btnNewButton.setText("取消");

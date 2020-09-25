@@ -67,7 +67,7 @@ public class MainWin {
 	 */
 	protected void createContents() {
 		shell = new Shell();
-		shell.setSize(879, 563);
+		shell.setSize(879, 492);
 		shell.setText("SWT Application");
 		shell.setLayout(new BorderLayout(0, 0));
 
