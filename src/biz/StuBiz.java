@@ -148,6 +148,8 @@ public class StuBiz {
 
 		return radomInt;
 	}
+	
+	
 
 	public static void main(String[] args) throws BizException, GeneralSecurityException, MessagingException {
 		StuBiz studentBiz = new StuBiz();
@@ -159,6 +161,31 @@ public class StuBiz {
 //		System.out.println(email);
 
 	}
+	
+	 /**
+     * 返回图片名
+     * @param name 学生姓名
+     * @return 图片名
+	 * @throws BizException 
+     */
+    public String RetFile(String name) throws BizException {
+        String File = null;
+        StuBiz studentBiz = new StuBiz();
+        List<Student> list = studentBiz.select(name);
+        for (Student stu : list) {
+            File = stu.getImgfile();
+        }
+        System.out.println(File);
+        return File;
+    }
+
+    //UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值
+    public void updaeImg(String fileName,String name){
+        String sql = "update student set imgFile = ? where Sname = ?";
+        DBHelper dbh = new DBHelper();
+        dbh.update(sql,fileName,name);
+    }
+
 
 	String[] college = new String[] { "外国语学院", "建工学院", "数能学院", "机械学院", "材化学院", "电信学院", "经管学院", "计信学院" };
 }

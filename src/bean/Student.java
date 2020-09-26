@@ -3,123 +3,143 @@ package bean;
 import java.util.Objects;
 
 public class Student {
-	private int sid; // 学生id
-	private int sno; // 学号
-	private String sname;
-	private String ssex;
-	private int sage;
-	private String sclass;
-	private int cid;
-	private float smo;
-	private String spw;
-	private String sma;
+    private int sid;  //学生id
+    private int sno; //学号
+    private String sname;
+    private String ssex;
+    private int sage;
+    private String sclass;
+    private int cid;
+    private float smo;
+    private String spw;
+    private String sma;
+    private String imgfile;
 
-	public Student() {
 
-	}
+    @Override
+    public String toString() {
+        return "Student{" +
+                "sid=" + sid +
+                ", sno=" + sno +
+                ", sname='" + sname + '\'' +
+                ", ssex='" + ssex + '\'' +
+                ", sage=" + sage +
+                ", sclass='" + sclass + '\'' +
+                ", cid=" + cid +
+                ", smo=" + smo +
+                ", spw='" + spw + '\'' +
+                ", sma='" + sma + '\'' +
+                ", imgfile='" + imgfile + '\'' +
+                '}';
+    }
 
-	@Override
-	public String toString() {
-		return "Student{" + "sid=" + sid + ", sno=" + sno + ", sname='" + sname + '\'' + ", ssex='" + ssex + '\''
-				+ ", sage=" + sage + ", sclass='" + sclass + '\'' + ", cid=" + cid + ", smo=" + smo + ", spw='" + spw
-				+ '\'' + ", sma='" + sma + '\'' + '}';
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return sid == student.sid &&
+                sno == student.sno &&
+                sage == student.sage &&
+                cid == student.cid &&
+                smo == student.smo &&
+                Objects.equals(sname, student.sname) &&
+                Objects.equals(ssex, student.ssex) &&
+                Objects.equals(sclass, student.sclass) &&
+                Objects.equals(spw, student.spw) &&
+                Objects.equals(sma, student.sma);
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		Student student = (Student) o;
-		return sid == student.sid && sno == student.sno && sage == student.sage && cid == student.cid
-				&& smo == student.smo && Objects.equals(sname, student.sname) && Objects.equals(ssex, student.ssex)
-				&& Objects.equals(sclass, student.sclass) && Objects.equals(spw, student.spw)
-				&& Objects.equals(sma, student.sma);
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hash(sid, sno, sname, ssex, sage, sclass, cid, smo, spw, sma);
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(sid, sno, sname, ssex, sage, sclass, cid, smo, spw, sma);
-	}
+    public String getImgfile() {
+        return imgfile;
+    }
 
-	public int getSid() {
-		return sid;
-	}
+    public void setImgfile(String imgfile) {
+        this.imgfile = imgfile;
+    }
 
-	public void setSid(int sid) {
-		this.sid = sid;
-	}
+    public int getSid() {
+        return sid;
+    }
 
-	public int getSno() {
-		return sno;
-	}
+    public void setSid(int sid) {
+        this.sid = sid;
+    }
 
-	public void setSno(int sno) {
-		this.sno = sno;
-	}
+    public int getSno() {
+        return sno;
+    }
 
-	public String getSname() {
-		return sname;
-	}
+    public void setSno(int sno) {
+        this.sno = sno;
+    }
 
-	public void setSname(String sname) {
-		this.sname = sname;
-	}
+    public String getSname() {
+        return sname;
+    }
 
-	public String getSsex() {
-		return ssex;
-	}
+    public void setSname(String sname) {
+        this.sname = sname;
+    }
 
-	public void setSsex(String ssex) {
-		this.ssex = ssex;
-	}
+    public String getSsex() {
+        return ssex;
+    }
 
-	public int getSage() {
-		return sage;
-	}
+    public void setSsex(String ssex) {
+        this.ssex = ssex;
+    }
 
-	public void setSage(int sage) {
-		this.sage = sage;
-	}
+    public int getSage() {
+        return sage;
+    }
 
-	public String getSclass() {
-		return sclass;
-	}
+    public void setSage(int sage) {
+        this.sage = sage;
+    }
 
-	public void setSclass(String sclass) {
-		this.sclass = sclass;
-	}
+    public String getSclass() {
+        return sclass;
+    }
 
-	public int getCid() {
-		return cid;
-	}
+    public void setSclass(String sclass) {
+        this.sclass = sclass;
+    }
 
-	public void setCid(int cid) {
-		this.cid = cid;
-	}
+    public int getCid() {
+        return cid;
+    }
 
-	public float getSmo() {
-		return smo;
-	}
+    public void setCid(int cid) {
+        this.cid = cid;
+    }
 
-	public void setSmo(float smo) {
-		this.smo = smo;
-	}
+    public float getSmo() {
+        return smo;
+    }
 
-	public String getSpw() {
-		return spw;
-	}
+    public void setSmo(float smo) {
+        this.smo = smo;
+    }
 
-	public void setSpw(String spw) {
-		this.spw = spw;
-	}
+    public String getSpw() {
+        return spw;
+    }
 
-	public String getSma() {
-		return sma;
-	}
+    public void setSpw(String spw) {
+        this.spw = spw;
+    }
 
-	public void setSma(String sma) {
-		this.sma = sma;
-	}
+    public String getSma() {
+        return sma;
+    }
+
+    public void setSma(String sma) {
+        this.sma = sma;
+    }
 }

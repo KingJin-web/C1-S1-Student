@@ -31,6 +31,7 @@ public class LoginWin {
 	protected Shell shell;
 	private Text textNo;
 	private Text textPwd;
+    public static String name;
 
 	private StuBiz sBiz = new StuBiz();
 	private TeacherBiz tBiz = new TeacherBiz();
@@ -124,17 +125,19 @@ public class LoginWin {
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				String no = textNo.getText();
+				name = textNo.getText();
 				String pwd = textPwd.getText();
 				try {
 
 					String str = String.valueOf(combo);
-					if((str.contains("学生")) && (sBiz.select(no,1))) {
+					if((str.contains("学生")) && (sBiz.select(name,1))) {
 						
-						sBiz.login(no, pwd);						
+						sBiz.login(name, pwd);						
 						System.out.println("成功");
-					}else if(str.contains("教师")&&tBiz.select(no) ) {
-						tBiz.login(no, pwd);
+						LoginWin.this.shell.dispose();
+	                    new StudentCard().open();
+					}else if(str.contains("教师")&&tBiz.select(name) ) {
+						tBiz.login(name, pwd);
 						System.out.println("成功");
 					}else if(str.contains("管理员")) {
 						
@@ -150,6 +153,8 @@ public class LoginWin {
 					mb.setText("系统提示");
 					mb.setMessage(e1.getMessage());
 					mb.open();
+				}finally {
+					returnName();
 				}
 			}
 		});
@@ -192,4 +197,9 @@ public class LoginWin {
 		button.setToolTipText("忘记密码");
 
 	}
+	
+	public static String returnName() {
+        return name;
+    }
+	
 }
