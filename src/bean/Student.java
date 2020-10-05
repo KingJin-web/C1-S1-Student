@@ -14,6 +14,7 @@ public class Student {
     private String spw;
     private String sma;
     private String imgfile;
+    private Integer state;
 
 
     @Override
@@ -33,113 +34,124 @@ public class Student {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Student student = (Student) o;
-        return sid == student.sid &&
-                sno == student.sno &&
-                sage == student.sage &&
-                cid == student.cid &&
-                smo == student.smo &&
-                Objects.equals(sname, student.sname) &&
-                Objects.equals(ssex, student.ssex) &&
-                Objects.equals(sclass, student.sclass) &&
-                Objects.equals(spw, student.spw) &&
-                Objects.equals(sma, student.sma);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(sid, sno, sname, ssex, sage, sclass, cid, smo, spw, sma);
-    }
+	public int getSid() {
+		return sid;
+	}
 
-    public String getImgfile() {
-        return imgfile;
-    }
 
-    public void setImgfile(String imgfile) {
-        this.imgfile = imgfile;
-    }
+	public void setSid(int sid) {
+		this.sid = sid;
+	}
 
-    public int getSid() {
-        return sid;
-    }
 
-    public void setSid(int sid) {
-        this.sid = sid;
-    }
+	public int getSno() {
+		return sno;
+	}
 
-    public int getSno() {
-        return sno;
-    }
 
-    public void setSno(int sno) {
-        this.sno = sno;
-    }
+	public void setSno(int sno) {
+		this.sno = sno;
+	}
 
-    public String getSname() {
-        return sname;
-    }
 
-    public void setSname(String sname) {
-        this.sname = sname;
-    }
+	public String getSname() {
+		return sname;
+	}
 
-    public String getSsex() {
-        return ssex;
-    }
 
-    public void setSsex(String ssex) {
-        this.ssex = ssex;
-    }
+	public void setSname(String sname) {
+		this.sname = sname;
+	}
 
-    public int getSage() {
-        return sage;
-    }
 
-    public void setSage(int sage) {
-        this.sage = sage;
-    }
+	public String getSsex() {
+		return ssex;
+	}
 
-    public String getSclass() {
-        return sclass;
-    }
 
-    public void setSclass(String sclass) {
-        this.sclass = sclass;
-    }
+	public void setSsex(String ssex) {
+		this.ssex = ssex;
+	}
 
-    public int getCid() {
-        return cid;
-    }
 
-    public void setCid(int cid) {
-        this.cid = cid;
-    }
+	public int getSage() {
+		return sage;
+	}
 
-    public float getSmo() {
-        return smo;
-    }
 
-    public void setSmo(float smo) {
-        this.smo = smo;
-    }
+	public void setSage(int sage) {
+		this.sage = sage;
+	}
 
-    public String getSpw() {
-        return spw;
-    }
 
-    public void setSpw(String spw) {
-        this.spw = spw;
-    }
+	public String getSclass() {
+		return sclass;
+	}
 
-    public String getSma() {
-        return sma;
-    }
 
-    public void setSma(String sma) {
-        this.sma = sma;
-    }
+	public void setSclass(String sclass) {
+		this.sclass = sclass;
+	}
+
+
+	public int getCid() {
+		return cid;
+	}
+
+
+	public void setCid(int cid) {
+		this.cid = cid;
+	}
+
+
+	public float getSmo() {
+		return smo;
+	}
+
+
+	public void setSmo(float smo) {
+		this.smo = smo;
+	}
+
+
+	public String getSpw() {
+		return spw;
+	}
+
+
+	public void setSpw(String spw) {
+		this.spw = spw;
+	}
+
+
+	public String getSma() {
+		return sma;
+	}
+
+
+	public void setSma(String sma) {
+		this.sma = sma;
+	}
+
+
+	public String getImgfile() {
+		return imgfile;
+	}
+
+
+	public void setImgfile(String imgfile) {
+		this.imgfile = imgfile;
+	}
+
+
+	public Integer getState() {
+		return state;
+	}
+
+
+	public void setState(Integer state) {
+		this.state = state;
+	}
+
 }

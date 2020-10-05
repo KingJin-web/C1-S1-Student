@@ -32,7 +32,7 @@ public class LoginWin {
 	protected Shell shell;
 	private Text textNo;
 	private Text textPwd;
-    public static String name;
+	public static String name;
 
 	private StuBiz sBiz = new StuBiz();
 	private TeacherBiz tBiz = new TeacherBiz();
@@ -132,19 +132,19 @@ public class LoginWin {
 				try {
 
 					String str = String.valueOf(combo);
-					if((str.contains("学生")) && (sBiz.select(name,1))) {
-						
-						sBiz.login(name, pwd);						
-						System.out.println("成功");
+					if ((str.contains("学生")) && (sBiz.select(name, 1))) {
+						sBiz.login(name, pwd);
 						LoginWin.this.shell.dispose();
-	                    new StudentCard().open();
-					}else if(str.contains("教师")&&tBiz.select(name) ) {
+						new StudentCard().open();
+					} else if (str.contains("教师") && tBiz.select(name)) {
 						tBiz.login(name, pwd);
-						System.out.println("成功");
-					}else if(str.contains("管理员")) {
+						LoginWin.this.shell.dispose();
+						new MainWin().open();
+					} else if (str.contains("管理员")) {
 						aBiz.login(name, pwd);
-						System.out.println("成功");
-					}else {
+						LoginWin.this.shell.dispose();
+						new AdminWin().open();
+					} else {
 						MessageBox mb = new MessageBox(shell);
 						mb.setText("系统提示");
 						mb.setMessage("叼你妈!");
@@ -156,7 +156,7 @@ public class LoginWin {
 					mb.setText("系统提示");
 					mb.setMessage(e1.getMessage());
 					mb.open();
-				}finally {
+				} finally {
 					returnName();
 				}
 			}
@@ -181,16 +181,17 @@ public class LoginWin {
 		fd_btnNewButton_1.left = new FormAttachment(btnNewButton, 88);
 		fd_btnNewButton_1.right = new FormAttachment(100, -63);
 		btnNewButton_1.setLayoutData(fd_btnNewButton_1);
-		
+
 		Button button = new Button(shell, SWT.NONE);
 		button.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				new PwdChangeWin(shell,SWT.NONE).open();
+				new PwdChangeWin(shell, SWT.NONE).open();
 			}
 		});
-		
-		button.setImage(SWTResourceManager.getImage(LoginWin.class, "/org/eclipse/jface/dialogs/images/message_info.png"));
+
+		button.setImage(
+				SWTResourceManager.getImage(LoginWin.class, "/org/eclipse/jface/dialogs/images/message_info.png"));
 		FormData fd_button = new FormData();
 		fd_button.bottom = new FormAttachment(combo, -68, SWT.BOTTOM);
 		fd_button.top = new FormAttachment(label_1, 0, SWT.TOP);
@@ -200,9 +201,9 @@ public class LoginWin {
 		button.setToolTipText("忘记密码");
 
 	}
-	
+
 	public static String returnName() {
-        return name;
-    }
-	
+		return name;
+	}
+
 }

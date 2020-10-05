@@ -46,7 +46,7 @@ public class Message {
 
 	@Override
 	public String toString() {
-		return "\n学生姓名:" + sname + "\n 留言内容:" + message + " \n留言时间:" + mdate;
+		return "学生姓名:" + sname + "\n留言内容:" + message + " \n留言时间:" + mdate + "\n";
 	}
 
 }

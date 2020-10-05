@@ -89,7 +89,7 @@ public class StudentCard {
 		Composite composite = new Composite(shell, SWT.NONE);
 		composite.setLayoutData(BorderLayout.WEST);
 		composite.setLayout(new GridLayout(1, false));
-		System.out.println("/img/" + new StuBiz().RetFile(name));
+		//System.out.println("/img/" + new StuBiz().RetFile(name));
 		Label lblNewLabel = new Label(composite, SWT.NONE);
 		GridData gd_lblNewLabel = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
 		gd_lblNewLabel.widthHint = 110;
