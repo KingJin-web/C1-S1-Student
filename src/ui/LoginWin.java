@@ -4,6 +4,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
 
+import biz.AdminBiz;
 import biz.BizException;
 import biz.StuBiz;
 import biz.TeacherBiz;
@@ -35,6 +36,7 @@ public class LoginWin {
 
 	private StuBiz sBiz = new StuBiz();
 	private TeacherBiz tBiz = new TeacherBiz();
+	private AdminBiz aBiz = new AdminBiz();
 
 	/**
 	 * Launch the application.
@@ -140,7 +142,8 @@ public class LoginWin {
 						tBiz.login(name, pwd);
 						System.out.println("成功");
 					}else if(str.contains("管理员")) {
-						
+						aBiz.login(name, pwd);
+						System.out.println("成功");
 					}else {
 						MessageBox mb = new MessageBox(shell);
 						mb.setText("系统提示");
