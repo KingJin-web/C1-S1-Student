@@ -81,7 +81,7 @@ public class StudentCard {
 	 */
 	protected void createContents() throws BizException {
 		shell = new Shell();
-		shell.setImage(SWTResourceManager.getImage(StudentCard.class, "/javax/swing/plaf/basic/icons/JavaCup16.png"));
+		shell.setImage(SWTResourceManager.getImage(StudentCard.class, "/imges/xs.jpg"));
 		shell.setSize(675, 371);
 		shell.setText("欢迎" + name + "同学");
 		shell.setLayout(new BorderLayout(0, 0));

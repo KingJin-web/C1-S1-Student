@@ -8,7 +8,7 @@ import biz.AdminBiz;
 import biz.BizException;
 import biz.StuBiz;
 import biz.TeacherBiz;
-
+import util.SwtLabelPaintListner;
 import util.SwtHelper;
 
 import org.eclipse.swt.widgets.Label;
@@ -72,7 +72,7 @@ public class LoginWin {
 	 */
 	protected void createContents() {
 		shell = new Shell();
-		shell.setImage(SWTResourceManager.getImage(LoginWin.class, "/javax/swing/plaf/basic/icons/JavaCup16.png"));
+		shell.setImage(SWTResourceManager.getImage(LoginWin.class, "/imges/login.jpg"));
 		shell.setSize(410, 363);
 		shell.setText("登录窗口");
 		shell.setLayout(new FormLayout());
@@ -199,6 +199,11 @@ public class LoginWin {
 		fd_button.left = new FormAttachment(textPwd, 6);
 		button.setLayoutData(fd_button);
 		button.setToolTipText("忘记密码");
+		
+		Label label_3 = new Label(shell, SWT.NONE);
+		label_3.setImage(SWTResourceManager.getImage(LoginWin.class, "/imges/baishi.jpg"));
+		label_3.setLayoutData(new FormData());
+		label_3.addPaintListener(new SwtLabelPaintListner());
 
 	}
 
