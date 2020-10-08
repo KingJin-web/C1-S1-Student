@@ -70,7 +70,7 @@ public class EmailDialog extends Dialog {
 		shell = new Shell(getParent(), SWT.SHELL_TRIM | SWT.BORDER);
 		shell.setImage(SWTResourceManager.getImage(EmailDialog.class, "/imges/youxiang.jpg"));
 		shell.setSize(423, 321);
-		shell.setText(getText());
+		shell.setText("信箱回复");
 		shell.setLayout(new BorderLayout(0, 0));
 
 		table = new Table(shell, SWT.BORDER | SWT.FULL_SELECTION);

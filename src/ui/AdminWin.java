@@ -409,6 +409,7 @@ public class AdminWin {
 		ModDialog md = new ModDialog(shell, SWT.NONE);
 		md.setItem(item);
 		md.open();
+		getStuInfo();
 	}
 
 	/**

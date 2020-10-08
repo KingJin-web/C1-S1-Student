@@ -197,7 +197,7 @@ public class CerWin extends Dialog {
 	 */
 	protected void intoCer() throws BizException, IOException {
 
-		if (imgFile.equals(null)) {
+		if (imgFile == null) {
 			throw new BizException("请选择证书 ! ");
 		}
 		
@@ -221,7 +221,7 @@ public class CerWin extends Dialog {
 		try {
 			String url = "";
 			FileDialog fileselect = new FileDialog(shell);
-			fileselect.setFilterPath("F:\\java\\eclipse-workspace\\Yc-s1\\src\\img");// 设置默认的路径
+			fileselect.setFilterPath("C:\\Users\\82427\\Desktop\\zhengshu");// 设置默认的路径
 			fileselect.setText("选择图片");// 设置对话框的标题
 			fileselect.setFilterNames(new String[] { "文本文件 (*.jpg*)", "所有文件(*.*)" });// 设置扩展名
 			fileselect.setFilterExtensions(new String[] { "*.jpg", "*.*" });// 设置文件扩展名

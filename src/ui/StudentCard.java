@@ -106,7 +106,7 @@ public class StudentCard {
 				StuBiz sb = new StuBiz();
 				String url = "", fileName = null;
 				FileDialog fileselect = new FileDialog(shell);
-				fileselect.setFilterPath("H:\\Tencent\\QQ下载\\A4-计科1班\\A4-计科1班");// 设置默认的路径
+				fileselect.setFilterPath("C:\\Users\\82427\\Desktop\\img");// 设置默认的路径
 				fileselect.setText("选择图片");// 设置对话框的标题
 				fileselect.setFilterNames(new String[] { "文本文件 (*.jpg*)", "所有文件(*.*)" });// 设置扩展名
 				fileselect.setFilterExtensions(new String[] { "*.jpg", "*.*" });// 设置文件扩展名

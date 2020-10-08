@@ -41,7 +41,7 @@ public class ChangeEmailDialog extends Dialog {
 	private Text text;
 	private Text text_1;
 	private Text text_2;
-	private int radomInt;
+	private int radomInt = new Random().nextInt(999999);;
 
 	private String email;
 	private String name;
@@ -96,7 +96,8 @@ public class ChangeEmailDialog extends Dialog {
 	 */
 	private void createContents() {
 		shell = new Shell(getParent(), SWT.SHELL_TRIM | SWT.BORDER);
-		shell.setImage(SWTResourceManager.getImage(ChangeEmailDialog.class, "/javax/swing/plaf/basic/icons/JavaCup16.png"));
+		shell.setImage(
+				SWTResourceManager.getImage(ChangeEmailDialog.class, "/javax/swing/plaf/basic/icons/JavaCup16.png"));
 		shell.setSize(450, 353);
 		shell.setText("修改邮箱");
 		shell.setLayout(new FormLayout());
@@ -135,7 +136,7 @@ public class ChangeEmailDialog extends Dialog {
 			public void widgetSelected(SelectionEvent e) {
 
 				YanZhengma();
-				
+
 			}
 		});
 		FormData fd_button = new FormData();
@@ -195,16 +196,16 @@ public class ChangeEmailDialog extends Dialog {
 		fd_text_2.right = new FormAttachment(100, -47);
 		fd_text_2.top = new FormAttachment(label_1, -3, SWT.TOP);
 		text_2.setLayoutData(fd_text_2);
-		
+
 		Label label_2 = new Label(shell, SWT.NONE);
 		label_2.setImage(SWTResourceManager.getImage(ChangeEmailDialog.class, "/imges/7.jpg"));
 		label_2.setLayoutData(new FormData());
 		label_2.addPaintListener(new SwtLabelPaintListner());
-		
+
 		text.setText(email);
 	}
 
-	//发送验证码获取验证码
+	// 发送验证码获取验证码
 	public int YanZhengma() {
 
 		try {
@@ -236,7 +237,7 @@ public class ChangeEmailDialog extends Dialog {
 				new DBHelper().update(sql, email, name);
 				throw new BizException("修改成功");
 			}
-		}else {
+		} else {
 			throw new BizException("请输入合法的邮箱 ! ");
 		}
 
@@ -250,22 +251,23 @@ public class ChangeEmailDialog extends Dialog {
 		Pattern pattern;
 		Matcher matcher;
 		pattern = Pattern.compile(rule);
-		matcher = pattern.matcher(email); 
+		matcher = pattern.matcher(email);
 		if (matcher.matches())
 			return true;
 		else
 			return false;
 
 	}
+
 	public boolean isNumber(String str) {
-		   Pattern pattern = Pattern.compile("[0-9]+");  
-		   Matcher matcher = pattern.matcher((CharSequence) str);  
-		   boolean result = matcher.matches();  
-		   if (result) {  
-		      return true;
-		   } else {  
-		       return true;
-		   }
-		
+		Pattern pattern = Pattern.compile("[0-9]+");
+		Matcher matcher = pattern.matcher((CharSequence) str);
+		boolean result = matcher.matches();
+		if (result) {
+			return true;
+		} else {
+			return true;
+		}
+
 	}
 }

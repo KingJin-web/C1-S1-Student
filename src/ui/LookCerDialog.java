@@ -38,15 +38,24 @@ public class LookCerDialog extends Dialog {
 	private Button button;
 	private Button button_3;
 	private Label label_3;
-	public TableItem getItem() { return item; }
-	public void setItem(TableItem item) { this.item = item; }
+
+	public TableItem getItem() {
+		return item;
+	}
+
+	public void setItem(TableItem item) {
+		this.item = item;
+	}
+
+	Label zsimg;
 
 	/**
 	 * Create the dialog.
+	 * 
 	 * @param parent
 	 * @param style
 	 */
-	public LookCerDialog(Shell parent, int style,String zname) {
+	public LookCerDialog(Shell parent, int style, String zname) {
 		super(parent, style);
 		setText("SWT Dialog");
 		this.zname = zname;
@@ -54,6 +63,7 @@ public class LookCerDialog extends Dialog {
 
 	/**
 	 * Open the dialog.
+	 * 
 	 * @return the result
 	 */
 	public Object open() {
@@ -77,20 +87,21 @@ public class LookCerDialog extends Dialog {
 		shell.setSize(450, 593);
 		shell.setText("证书详情");
 		shell.setLayout(new FormLayout());
-		
-		Label zsimg = new Label(shell, SWT.NONE);
-		zsimg.setImage(null);
+
+		zsimg = new Label(shell, SWT.NONE);
+		zsimg.setImage(SWTResourceManager.getImage(LookCerDialog.class, "/javax/swing/plaf/basic/icons/image-delayed.png"));
 		FormData fd_zsimg = new FormData();
 		fd_zsimg.top = new FormAttachment(0, 22);
 		fd_zsimg.right = new FormAttachment(100, -30);
 		fd_zsimg.left = new FormAttachment(0, 31);
 		zsimg.setLayoutData(fd_zsimg);
-		
+		zsimg.addPaintListener(new SwtLabelPaintListner());
+
 		Label label = new Label(shell, SWT.NONE);
 		FormData fd_label = new FormData();
 		label.setLayoutData(fd_label);
 		label.setText("获得者：");
-		
+
 		textName = new Text(shell, SWT.BORDER | SWT.READ_ONLY);
 		fd_label.bottom = new FormAttachment(textName, 0, SWT.BOTTOM);
 		fd_zsimg.bottom = new FormAttachment(100, -279);
@@ -99,28 +110,28 @@ public class LookCerDialog extends Dialog {
 		fd_textName.right = new FormAttachment(100, -68);
 		fd_textName.top = new FormAttachment(zsimg, 10);
 		textName.setLayoutData(fd_textName);
-		
+
 		Label label_1 = new Label(shell, SWT.NONE);
 		fd_label.left = new FormAttachment(label_1, 0, SWT.LEFT);
 		FormData fd_label_1 = new FormData();
 		fd_label_1.top = new FormAttachment(label, 42);
 		label_1.setLayoutData(fd_label_1);
 		label_1.setText("申请时间：");
-		
+
 		Label label_2 = new Label(shell, SWT.NONE);
 		label_2.setText("审批状态：");
 		FormData fd_label_2 = new FormData();
 		fd_label_2.top = new FormAttachment(label_1, 46);
 		label_2.setLayoutData(fd_label_2);
-		
-		//当数据库状态为0时，未审核，之后不能点击
+
+		// 当数据库状态为0时，未审核，之后不能点击
 		button = new Button(shell, SWT.RADIO);
 		FormData fd_button = new FormData();
 		fd_button.left = new FormAttachment(textName, 0, SWT.LEFT);
 		button.setLayoutData(fd_button);
 		button.setText("暂未审核");
 		button.setEnabled(false);
-		
+
 		button_1 = new Button(shell, SWT.RADIO);
 		fd_button.top = new FormAttachment(button_1, 23);
 		button_1.addSelectionListener(new SelectionAdapter() {
@@ -135,7 +146,7 @@ public class LookCerDialog extends Dialog {
 		fd_button_1.right = new FormAttachment(100, -171);
 		button_1.setLayoutData(fd_button_1);
 		button_1.setText("批准");
-		
+
 		Button button_2 = new Button(shell, SWT.NONE);
 		button_2.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -149,7 +160,7 @@ public class LookCerDialog extends Dialog {
 		fd_button_2.left = new FormAttachment(label, 0, SWT.LEFT);
 		fd_button_2.top = new FormAttachment(100, -38);
 		button_2.setLayoutData(fd_button_2);
-		
+
 		Button button_2_1 = new Button(shell, SWT.NONE);
 		button_2_1.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -165,14 +176,14 @@ public class LookCerDialog extends Dialog {
 		fd_button_2_1.right = new FormAttachment(100, -95);
 		button_2_1.setLayoutData(fd_button_2_1);
 		fd_label_1.right = new FormAttachment(100, -266);
-		
+
 		text = new Text(shell, SWT.BORDER | SWT.READ_ONLY);
 		FormData fd_text = new FormData();
 		fd_text.right = new FormAttachment(textName, 0, SWT.RIGHT);
 		fd_text.top = new FormAttachment(textName, 36);
 		fd_text.left = new FormAttachment(label_1, 41);
 		text.setLayoutData(fd_text);
-		
+
 		button_3 = new Button(shell, SWT.RADIO);
 		button_3.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -185,38 +196,36 @@ public class LookCerDialog extends Dialog {
 		fd_button_3.right = new FormAttachment(zsimg, 0, SWT.RIGHT);
 		button_3.setLayoutData(fd_button_3);
 		button_3.setText("不允通过");
-		
+
 		label_3 = new Label(shell, SWT.NONE);
 		label_3.setImage(SWTResourceManager.getImage(LookCerDialog.class, "/imges/rio.jpg"));
 		label_3.setLayoutData(new FormData());
 		label_3.addPaintListener(new SwtLabelPaintListner());
-		
+
 		getCerSname();
 	}
-	
-	
-	
+
 	protected void ChanegZt() {
 		// TODO Auto-generated method stub
 		try {
 			String sql = "update Certificate set zt = ?,sptime = now() where zname = ? and sname = ?";
 			DBHelper dbh = new DBHelper();
 			System.out.println("传入的名字" + sname);
-			dbh.update(sql,choose, zname,sname);
+			dbh.update(sql, choose, zname, sname);
 			MessageBox mb = new MessageBox(shell);
 			mb.setMessage("审核完毕");
 			mb.setText("系统提示");
 			mb.open();
 			shell.dispose();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void getCerSname() {
 		try {
-			String sql = "select * from certificate where zname like ?";
+			String sql = "select * from certificate where zname = ?";
 			DBHelper dbh = new DBHelper();
 			List<Certificate> list = dbh.query(sql, Certificate.class,zname);
 			
@@ -230,6 +239,7 @@ public class LookCerDialog extends Dialog {
 				}else if(Integer.valueOf(cer.getZt()) == 2){
 					button_3.setSelection(true);
 				}
+				zsimg.setImage(SWTResourceManager.getImage("D:\\stuImg\\" + cer.getZsimg()));
 			}
 			
 		}catch (Exception e) {

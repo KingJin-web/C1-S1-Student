@@ -16,7 +16,7 @@ import util.EmailHelper;
 
 public class StuBiz {
 	private StuDao sDao = new StuDao();
-	private static int radomInt = 0;
+	private static int radomInt = new Random().nextInt(999999);;
 
 	// 更改密码
 	public void modifyPassword(String newPwd) {
@@ -63,7 +63,7 @@ public class StuBiz {
 	 * @return
 	 * @throws BizException
 	 */
-	public boolean select(String Sno,int i) throws BizException {
+	public boolean select(String Sno, int i) throws BizException {
 		String sql = "select * from student where Sname=? ";
 		List<Map<String, Object>> list = new DBHelper().query(sql, Sno);
 		System.out.println(list);
@@ -78,14 +78,12 @@ public class StuBiz {
 	 * 显示学生信息
 	 * 
 	 * @return
-	 * @throws BizException 
+	 * @throws BizException
 	 */
 	public List<Student> select(String sname) throws BizException {
 		String sql = "select * from student where 1 = 1 and Sname=?";
 		List<Student> list = new DBHelper().query(sql, Student.class, sname);
-		
-			
-		
+
 		System.out.println(list);
 //        Student email = list.getSma();
 		return list;
@@ -98,7 +96,7 @@ public class StuBiz {
 	 * @param newPw2
 	 * @return
 	 */
-	public boolean changePw(String sno, String newPw1, String newPw2,int YanZhengma)
+	public boolean changePw(String sno, String newPw1, String newPw2, int YanZhengma)
 			throws BizException, GeneralSecurityException, MessagingException {
 		StuBiz studentBiz = new StuBiz();
 
@@ -111,14 +109,15 @@ public class StuBiz {
 		if (!newPw1.equals(newPw2)) {
 			throw new BizException("两次密码不一致请重新输入 ! ");
 		}
-		
-		Scanner input = new Scanner(System.in);// 创建一个键盘扫描类对象
-		
-		
-		System.out.println(radomInt);
-		if (radomInt != YanZhengma) {
-			throw new BizException("验证码不一致请重新获取 ! ");
+		if (YanZhengma != 0) {
+			if (radomInt != YanZhengma) {
+				throw new BizException("验证码不一致请重新获取 ! ");
+				
+			}
+		} else {
+			
 		}
+
 		// UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值
 		String sql = "update student set spw = ? where sname = ?";
 		new DBHelper().update(sql, newPw1, sno);
@@ -148,8 +147,6 @@ public class StuBiz {
 
 		return radomInt;
 	}
-	
-	
 
 	public static void main(String[] args) throws BizException, GeneralSecurityException, MessagingException {
 		StuBiz studentBiz = new StuBiz();
@@ -161,31 +158,31 @@ public class StuBiz {
 //		System.out.println(email);
 
 	}
-	
-	 /**
-     * 返回图片名
-     * @param name 学生姓名
-     * @return 图片名
-	 * @throws BizException 
-     */
-    public String RetFile(String name) throws BizException {
-        String File = null;
-        StuBiz studentBiz = new StuBiz();
-        List<Student> list = studentBiz.select(name);
-        for (Student stu : list) {
-            File = stu.getImgfile();
-        }
-        System.out.println(File);
-        return File;
-    }
 
-    //UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值
-    public void updaeImg(String fileName,String name){
-        String sql = "update student set imgFile = ? where Sname = ?";
-        DBHelper dbh = new DBHelper();
-        dbh.update(sql,fileName,name);
-    }
+	/**
+	 * 返回图片名
+	 * 
+	 * @param name 学生姓名
+	 * @return 图片名
+	 * @throws BizException
+	 */
+	public String RetFile(String name) throws BizException {
+		String File = null;
+		StuBiz studentBiz = new StuBiz();
+		List<Student> list = studentBiz.select(name);
+		for (Student stu : list) {
+			File = stu.getImgfile();
+		}
+		System.out.println(File);
+		return File;
+	}
 
+	// UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值
+	public void updaeImg(String fileName, String name) {
+		String sql = "update student set imgFile = ? where Sname = ?";
+		DBHelper dbh = new DBHelper();
+		dbh.update(sql, fileName, name);
+	}
 
 	String[] college = new String[] { "外国语学院", "建工学院", "数能学院", "机械学院", "材化学院", "电信学院", "经管学院", "计信学院" };
 }
