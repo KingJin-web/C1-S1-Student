@@ -21,6 +21,7 @@ import org.eclipse.swt.widgets.Text;
 
 import util.DBHelper;
 import util.EmailHelper;
+import util.SwtLabelPaintListner;
 import bean.Student;
 import biz.BizException;
 import biz.StuBiz;
@@ -31,6 +32,7 @@ import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 public class ChangeEmailDialog extends Dialog {
 
@@ -94,6 +96,7 @@ public class ChangeEmailDialog extends Dialog {
 	 */
 	private void createContents() {
 		shell = new Shell(getParent(), SWT.SHELL_TRIM | SWT.BORDER);
+		shell.setImage(SWTResourceManager.getImage(ChangeEmailDialog.class, "/javax/swing/plaf/basic/icons/JavaCup16.png"));
 		shell.setSize(450, 353);
 		shell.setText("修改邮箱");
 		shell.setLayout(new FormLayout());
@@ -192,7 +195,12 @@ public class ChangeEmailDialog extends Dialog {
 		fd_text_2.right = new FormAttachment(100, -47);
 		fd_text_2.top = new FormAttachment(label_1, -3, SWT.TOP);
 		text_2.setLayoutData(fd_text_2);
-
+		
+		Label label_2 = new Label(shell, SWT.NONE);
+		label_2.setImage(SWTResourceManager.getImage(ChangeEmailDialog.class, "/imges/7.jpg"));
+		label_2.setLayoutData(new FormData());
+		label_2.addPaintListener(new SwtLabelPaintListner());
+		
 		text.setText(email);
 	}
 
@@ -260,5 +268,4 @@ public class ChangeEmailDialog extends Dialog {
 		   }
 		
 	}
-
 }

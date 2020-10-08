@@ -74,6 +74,7 @@ public class CerWin extends Dialog {
 	 */
 	private void createContents() {
 		shell = new Shell(getParent(), SWT.BORDER | SWT.CLOSE | SWT.MIN | SWT.MAX | SWT.RESIZE);
+		shell.setImage(SWTResourceManager.getImage(CerWin.class, "/imges/zhengshu.jpg"));
 		shell.setSize(450, 300);
 		shell.setText("证书申请");
 		shell.setLayout(new GridLayout(1, false));

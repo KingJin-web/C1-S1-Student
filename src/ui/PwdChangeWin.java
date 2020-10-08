@@ -15,6 +15,7 @@ import org.eclipse.swt.widgets.Text;
 import biz.BizException;
 import biz.StuBiz;
 import util.SwtHelper;
+import util.SwtLabelPaintListner;
 
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -22,6 +23,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormAttachment;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 public class PwdChangeWin extends Dialog {
 
@@ -51,6 +53,11 @@ public class PwdChangeWin extends Dialog {
 		shell.open();
 		shell.layout();
 		SwtHelper.center(shell);
+		
+		Label label = new Label(shell, SWT.NONE);
+		label.setImage(SWTResourceManager.getImage(PwdChangeWin.class, "/imges/ad.jpg"));
+		label.setLayoutData(new FormData());
+		label.addPaintListener(new SwtLabelPaintListner());
 		Display display = getParent().getDisplay();
 		while (!shell.isDisposed()) {
 			if (!display.readAndDispatch()) {

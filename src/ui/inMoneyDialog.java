@@ -14,6 +14,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
 
 import biz.BizException;
 import util.DBHelper;
+import util.SwtLabelPaintListner;
 
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Label;
@@ -80,7 +81,7 @@ public class inMoneyDialog extends Dialog {
 	 */
 	private void createContents() {
 		shell = new Shell(getParent(), SWT.SHELL_TRIM | SWT.BORDER);
-		shell.setImage(SWTResourceManager.getImage(inMoneyDialog.class, "/javax/swing/plaf/basic/icons/JavaCup16.png"));
+		shell.setImage(SWTResourceManager.getImage(inMoneyDialog.class, "/imges/chongzhi.jpg"));
 		shell.setSize(450, 300);
 		shell.setText("充值");
 		shell.setLayout(new FormLayout());
@@ -147,7 +148,11 @@ public class inMoneyDialog extends Dialog {
 		fd_btnNewButton_1.right = new FormAttachment(100, -74);
 		btnNewButton_1.setLayoutData(fd_btnNewButton_1);
 		btnNewButton_1.setText("返回");
-
+		
+		Label label_2 = new Label(shell, SWT.NONE);
+		label_2.setImage(SWTResourceManager.getImage(inMoneyDialog.class, "/imges/weita.jpg"));
+		label_2.setLayoutData(new FormData());
+		label_2.addPaintListener(new SwtLabelPaintListner());
 	}
 
 	protected void inMoney() throws BizException {

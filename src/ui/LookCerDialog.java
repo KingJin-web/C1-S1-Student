@@ -18,9 +18,11 @@ import org.eclipse.swt.widgets.Button;
 
 import bean.Certificate;
 import util.DBHelper;
+import util.SwtLabelPaintListner;
 
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 public class LookCerDialog extends Dialog {
 
@@ -35,6 +37,7 @@ public class LookCerDialog extends Dialog {
 	private Button button_1;
 	private Button button;
 	private Button button_3;
+	private Label label_3;
 	public TableItem getItem() { return item; }
 	public void setItem(TableItem item) { this.item = item; }
 
@@ -182,6 +185,12 @@ public class LookCerDialog extends Dialog {
 		fd_button_3.right = new FormAttachment(zsimg, 0, SWT.RIGHT);
 		button_3.setLayoutData(fd_button_3);
 		button_3.setText("不允通过");
+		
+		label_3 = new Label(shell, SWT.NONE);
+		label_3.setImage(SWTResourceManager.getImage(LookCerDialog.class, "/imges/rio.jpg"));
+		label_3.setLayoutData(new FormData());
+		label_3.addPaintListener(new SwtLabelPaintListner());
+		
 		getCerSname();
 	}
 	
