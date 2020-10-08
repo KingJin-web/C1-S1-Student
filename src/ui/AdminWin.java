@@ -39,7 +39,6 @@ public class AdminWin {
 	private Text text_1;
 	private Text text_2;
 	private Table table;
-	private Text text_4;
 	String[] college = new String[] { "", "计信学院", "经管学院", "材化学院", "数能学院", "电信学院", "建工学院", "外国语学院", "机械学院" };
 	String[] state = new String[] { "正常", "挂失中", "已注销" };
 
@@ -148,7 +147,9 @@ public class AdminWin {
 				reback();
 			}
 		});
-		btnNewButton_5.setLayoutData(new GridData(SWT.LEFT, SWT.FILL, false, false, 1, 2));
+		GridData gd_btnNewButton_5 = new GridData(SWT.LEFT, SWT.FILL, false, false, 1, 1);
+		gd_btnNewButton_5.widthHint = 66;
+		btnNewButton_5.setLayoutData(gd_btnNewButton_5);
 		btnNewButton_5.setText("补办");
 		btnNewButton_5.setToolTipText("需收补办费用10元");
 
@@ -220,6 +221,19 @@ public class AdminWin {
 		gd_btnNewButton_4.widthHint = 66;
 		btnNewButton_4.setLayoutData(gd_btnNewButton_4);
 		btnNewButton_4.setText("返回");
+		
+		Button button_1 = new Button(composite, SWT.NONE);
+		button_1.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				EmailDialog ed = new EmailDialog(shell, SWT.NONE);
+				ed.open();
+			}
+		});
+		GridData gd_button_1 = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
+		gd_button_1.widthHint = 66;
+		button_1.setLayoutData(gd_button_1);
+		button_1.setText("信箱");
 
 		Composite composite_1 = new Composite(shell, SWT.NONE);
 		composite_1.setLayoutData(BorderLayout.CENTER);
@@ -264,14 +278,7 @@ public class AdminWin {
 		TableColumn tableColumn_8 = new TableColumn(table, SWT.CENTER);
 		tableColumn_8.setWidth(100);
 		tableColumn_8.setText("状态");
-
-		Composite composite_3 = new Composite(shell, SWT.NONE);
-		composite_3.setLayoutData(BorderLayout.SOUTH);
-		composite_3.setLayout(new FillLayout(SWT.HORIZONTAL));
-
-		text_4 = new Text(composite_3, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
 		StuDao sDao = new StuDao();
-		text_4.setText(sDao.showMessage());
 
 		getStuInfo();
 	}

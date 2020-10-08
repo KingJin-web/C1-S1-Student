@@ -10,13 +10,13 @@ public class Certificate {
 	private Date time;
 	private Date sptime;
 	private String zsimg;
-	private String zt;
+	private Integer zt;
 	
 	
-	public String getZt() {
+	public Integer getZt() {
 		return zt;
 	}
-	public void setZt(String zt) {
+	public void setZt(Integer zt) {
 		this.zt = zt;
 	}
 	public Integer getId() {

@@ -1,7 +1,6 @@
 package ui;
 
-import util.DBHelper;
-import util.IOHelper;
+
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
@@ -13,6 +12,8 @@ import bean.Student;
 import biz.BizException;
 import biz.StuBiz;
 import swing2swt.layout.BorderLayout;
+import util.IOHelper;
+
 import org.eclipse.swt.widgets.Composite;
 
 import java.io.IOException;
@@ -89,7 +90,7 @@ public class StudentCard {
 		Composite composite = new Composite(shell, SWT.NONE);
 		composite.setLayoutData(BorderLayout.WEST);
 		composite.setLayout(new GridLayout(1, false));
-		//System.out.println("/img/" + new StuBiz().RetFile(name));
+
 		Label lblNewLabel = new Label(composite, SWT.NONE);
 		GridData gd_lblNewLabel = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
 		gd_lblNewLabel.widthHint = 110;
@@ -133,7 +134,7 @@ public class StudentCard {
 						e1.printStackTrace();
 					}
 				}
-				System.out.println(url);
+				System.out.println("选择的图片路径：" + url);
 			}
 		});
 
@@ -215,7 +216,16 @@ public class StudentCard {
 
 		text_4 = new Text(composite_1, SWT.BORDER);
 		text_4.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-		new Label(composite_1, SWT.NONE);
+
+		Button button_2 = new Button(composite_1, SWT.NONE);
+		button_2.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				inMoney();
+			}
+		});
+		button_2.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		button_2.setText("充值");
 		new Label(composite_1, SWT.NONE);
 		new Label(composite_1, SWT.NONE);
 
@@ -227,8 +237,38 @@ public class StudentCard {
 		text_7.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 
 		Button button = new Button(composite_1, SWT.NONE);
+		button.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				ChangeEmailDialog cd = new ChangeEmailDialog(shell, SWT.NONE);
+				cd.setEmail(text_7.getText());
+				cd.setName(name);
+				cd.open();
+			}
+		});
 		button.setText("修改邮箱");
 		new Label(composite_1, SWT.NONE);
+		new Label(composite_1, SWT.NONE);
+		new Label(composite_1, SWT.NONE);
+		new Label(composite_1, SWT.NONE);
+		new Label(composite_1, SWT.NONE);
+		
+		Button button_3 = new Button(composite_1, SWT.NONE);
+		button_3.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				try {
+					query(name);
+				} catch (BizException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		GridData gd_button_3 = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
+		gd_button_3.widthHint = 59;
+		button_3.setLayoutData(gd_button_3);
+		button_3.setText("刷新");
 
 		Composite composite_2 = new Composite(shell, SWT.NONE);
 		composite_2.setLayoutData(BorderLayout.SOUTH);
@@ -243,6 +283,11 @@ public class StudentCard {
 		btnNewButton_2.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+
+				StudentCard.this.shell.dispose();
+				returnName();
+				new CertificateWin().open();
+
 			}
 		});
 		btnNewButton_2.setText("荣誉查询");
@@ -269,12 +314,18 @@ public class StudentCard {
 			}
 		});
 		btnNewButton_1.setText("校长信箱");
-
-		// System.out.println(name);
 		query(name);
+		// (name);
+		// query(name);
 	}
 
-	String[] college = new String[] { "计信学院", "经管学院", "材化学院","数能学院", "电信学院" , "建工学院", "外国语学院", "机械学院" };
+	protected void inMoney() {
+		inMoneyDialog inmg = new inMoneyDialog(shell, SWT.NONE);
+		inmg.setName(name);
+		inmg.open();
+	}
+
+	String[] college = new String[] { "计信学院", "经管学院", "材化学院", "数能学院", "电信学院", "建工学院", "外国语学院", "机械学院" };
 
 	public void query(String sname) throws BizException {
 		StuBiz sBiz = new StuBiz();
@@ -307,10 +358,11 @@ public class StudentCard {
 		} catch (IOException ioException) {
 			ioException.printStackTrace();
 		}
-		System.out.println(url);
+		System.out.println("选择的图片路径：" + url);
 	}
 
 	public static String returnName() {
 		return name;
 	}
+
 }

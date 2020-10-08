@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import bean.Message;
+import bean.PEmail;
 import util.DBHelper;
 
 public class StuDao {
@@ -18,6 +19,18 @@ public class StuDao {
 //		String ms = String.valueOf(list);
 		System.out.println(ms);
 		return ms;
+	}
+
+	public String showEmail() {
+		DBHelper dbh = new DBHelper();
+		String sql = "select * from pmail where pPreply is null order by mTime desc limit 1";
+		List<PEmail> list = dbh.query(sql, PEmail.class);
+		String email = "学生信箱:";
+		for (PEmail em : list) {
+			email = email + String.valueOf(em);
+		}
+		System.out.println(email);
+		return email;
 	}
 
 	public static void main(String[] args) {

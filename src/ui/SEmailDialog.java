@@ -38,7 +38,7 @@ public class SEmailDialog extends Dialog {
 	 */
 	public SEmailDialog(Shell parent, int style) {
 		super(parent, style);
-		setText("详情");
+		setText("SWT Dialog");
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class SEmailDialog extends Dialog {
 		gd_btnNewButton.widthHint = 437;
 		btnNewButton.setLayoutData(gd_btnNewButton);
 		btnNewButton.setText("返回");
-		
+		 
 		if(item!=null) {
 			// 设置要编辑的用户信息 
 			setEmp();

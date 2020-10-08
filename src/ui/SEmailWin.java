@@ -81,7 +81,7 @@ public class SEmailWin {
 	protected void createContents() {
 		shell = new Shell();
 		shell.setToolTipText("");
-		shell.setImage(SWTResourceManager.getImage(SEmailWin.class, "/javax/swing/plaf/basic/icons/JavaCup16.png"));
+		shell.setImage(SWTResourceManager.getImage(SEmailWin.class, "/imges/youxiang.jpg"));
 		shell.setSize(620, 523);
 		shell.setText("校长信箱");
 		shell.setLayout(new GridLayout(1, false));
@@ -216,7 +216,7 @@ public class SEmailWin {
 		String sql = "insert into pmail (sname,smessage,mtime) values (?,?,now())";
 		int i = dbh.update(sql, name, message);
 		if (i == 1) {
-			throw new BizException("提交成功! ");
+			throw new BizException("提交成功! "); 
 		} else {
 			throw new BizException("提交失败 ");
 		}

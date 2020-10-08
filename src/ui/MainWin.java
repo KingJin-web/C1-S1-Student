@@ -20,7 +20,6 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
-import org.eclipse.wb.swt.SWTResourceManager;
 
 import bean.Student;
 import biz.TeacherBiz;
@@ -28,6 +27,7 @@ import dao.StuDao;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Combo;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 public class MainWin {
 
@@ -200,6 +200,13 @@ public class MainWin {
 		new Label(composite, SWT.NONE);
 
 		Button btnNewButton_4 = new Button(composite, SWT.NONE);
+		btnNewButton_4.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				MainWin.this.shell.dispose();
+				new LoginWin().open();
+			}
+		});
 		GridData gd_btnNewButton_4 = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
 		gd_btnNewButton_4.widthHint = 66;
 		btnNewButton_4.setLayoutData(gd_btnNewButton_4);
@@ -230,14 +237,21 @@ public class MainWin {
 		}
 		// 将 item 传入  EmpEidtDialog
 		TableItem item = items[0];
-		//System.out.println(item.getText(1));
+		System.out.println(item.getText(1));
 		sname = item.getText(1);
-		CerDialog cd = new CerDialog(shell, SWT.NONE);
-		cd.open();
+		CerDialog cd = new CerDialog(shell, SWT.NONE,sname);
+		//cd.open();
+		cd.setItem(item);
+		if(cd.open() != null) {
+			getname();
+		}
 
 	}
 	
-	
+	public String getname() {
+		// TODO Auto-generated method stub
+		return sname;
+	}
 
 	/**
 	 * 截取字符串str中指定字符 strStart、strEnd之间的字符串
@@ -330,9 +344,6 @@ public class MainWin {
 
 	}
 
-	public static String getname() {
-		// TODO Auto-generated method stub
-		return sname;
-	}
+	
 
 }
