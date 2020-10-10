@@ -35,7 +35,7 @@ public class StuBiz {
 	}
 
 	// 验证账号密码合法性然后登陆
-	public boolean login(String Sname, String Spw) throws BizException, SQLException {
+	public boolean login(String Sname, String Spw) throws BizException{
 		if (Sname == null || Sname.trim().isEmpty()) {
 			throw new BizException("请输入用户名 ! ");
 		}

@@ -182,7 +182,11 @@ public class PwdChangeWin extends Dialog {
 						return;
 					}
 					sb.changePw(name, pwd, pwd2, yzm);
-
+					MessageBox mb = new MessageBox(shell);
+					mb.setText("系统提示");
+					mb.setMessage("密码修改成功请重新登录");
+					mb.open();
+					shell.dispose();
 				}
 
 				catch (BizException | GeneralSecurityException | MessagingException e1) {

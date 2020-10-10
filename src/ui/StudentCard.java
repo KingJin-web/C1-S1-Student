@@ -248,31 +248,10 @@ public class StudentCard {
 		});
 		button.setText("修改邮箱");
 		new Label(composite_1, SWT.NONE);
-		new Label(composite_1, SWT.NONE);
-		new Label(composite_1, SWT.NONE);
-		new Label(composite_1, SWT.NONE);
-		new Label(composite_1, SWT.NONE);
-		
-		Button button_3 = new Button(composite_1, SWT.NONE);
-		button_3.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				try {
-					query(name);
-				} catch (BizException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		GridData gd_button_3 = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
-		gd_button_3.widthHint = 59;
-		button_3.setLayoutData(gd_button_3);
-		button_3.setText("刷新");
 
 		Composite composite_2 = new Composite(shell, SWT.NONE);
 		composite_2.setLayoutData(BorderLayout.SOUTH);
-		composite_2.setLayout(new GridLayout(6, false));
+		composite_2.setLayout(new GridLayout(8, false));
 
 		Composite composite_3 = new Composite(composite_2, SWT.NONE);
 		GridData gd_composite_3 = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
@@ -314,6 +293,20 @@ public class StudentCard {
 			}
 		});
 		btnNewButton_1.setText("校长信箱");
+		new Label(composite_2, SWT.NONE);
+		
+		Button button_3 = new Button(composite_2, SWT.NONE);
+		GridData gd_button_3 = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
+		gd_button_3.widthHint = 80;
+		button_3.setLayoutData(gd_button_3);
+		button_3.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				shell.dispose();
+				new LoginWin().open();
+			}
+		});
+		button_3.setText("返回");
 		query(name);
 		// (name);
 		// query(name);
@@ -359,6 +352,13 @@ public class StudentCard {
 			ioException.printStackTrace();
 		}
 		System.out.println("选择的图片路径：" + url);
+		
+		try {
+			query(name);
+		} catch (BizException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static String returnName() {

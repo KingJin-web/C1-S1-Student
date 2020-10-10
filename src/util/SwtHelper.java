@@ -111,7 +111,7 @@ public class SwtHelper {
 		return confirm("系统提示", msg, shell);
 	}
 
-	public static void message(String msg, Shell shell) {
+	public static void mssage(String msg, Shell shell) {
 		message("系统提示", msg, shell);
 	}
 
