@@ -10,6 +10,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
 import bean.PEmail;
 import biz.BizException;
 import util.DBHelper;
+import util.SwtHelper;
 
 import org.eclipse.swt.layout.FillLayout;
 
@@ -66,6 +67,7 @@ public class SEmailWin {
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
+		SwtHelper.center(shell);
 		shell.open();
 		shell.layout();
 		while (!shell.isDisposed()) {

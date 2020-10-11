@@ -9,6 +9,7 @@ import java.util.List;
 import org.eclipse.swt.SWT;
 import swing2swt.layout.BorderLayout;
 import util.DBHelper;
+import util.SwtHelper;
 
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
@@ -52,6 +53,7 @@ public class EmailDialog extends Dialog {
 	 */
 	public Object open() {
 		createContents();
+		SwtHelper.center(shell);
 		shell.open();
 		shell.layout();
 		Display display = getParent().getDisplay();
@@ -115,6 +117,7 @@ public class EmailDialog extends Dialog {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				reEmail();
+				query();
 			}
 		});
 		btnNewButton.setText("回复");

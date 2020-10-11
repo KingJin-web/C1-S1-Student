@@ -24,7 +24,7 @@ public class TeacherBiz {
     	DBHelper dbh = null;
     	try {
 	    	dbh = new DBHelper();
-	    	String sql = "select * from student where 1 = 1 ";
+	    	String sql = "select * from student where 1 = 1 and state <> 2 ";
 	    	List<Object> params = new ArrayList<>();
 	    	if(student.getSname() != null && student.getSname().trim().isEmpty() == false ) {
 	    		sql += "and Sname like ? ";

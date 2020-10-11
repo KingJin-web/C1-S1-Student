@@ -5,6 +5,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import swing2swt.layout.BorderLayout;
 import util.DBHelper;
+import util.SwtHelper;
 
 import org.eclipse.swt.widgets.Table;
 
@@ -44,7 +45,7 @@ public class CerDialog extends Dialog {
 	 */
 	public CerDialog(Shell parent, int style,String sname) {
 		super(parent, style);
-		setText("证书详情");
+		setText("证书详情"); 
 		this.sname=sname;
 	}
 
@@ -54,6 +55,7 @@ public class CerDialog extends Dialog {
 	 */
 	public Object open() {
 		createContents();
+		SwtHelper.center(shell);
 		shell.open();
 		shell.layout();
 		Display display = getParent().getDisplay();
@@ -107,6 +109,7 @@ public class CerDialog extends Dialog {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				LookZs();
+				getStuCer();
 			}
 		});
 		button.setText("查看详情");

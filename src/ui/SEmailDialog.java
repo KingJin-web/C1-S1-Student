@@ -7,6 +7,9 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Text;
+
+import util.SwtHelper;
+
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.GridLayout;
@@ -47,6 +50,7 @@ public class SEmailDialog extends Dialog {
 	 */
 	public Object open() {
 		createContents();
+		SwtHelper.center(shell);
 		shell.open();
 		shell.layout();
 		Display display = getParent().getDisplay();

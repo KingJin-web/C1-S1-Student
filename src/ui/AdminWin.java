@@ -4,6 +4,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import swing2swt.layout.BorderLayout;
 import util.DBHelper;
+import util.SwtHelper;
 
 import org.eclipse.swt.widgets.Composite;
 
@@ -62,6 +63,7 @@ public class AdminWin {
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
+		SwtHelper.center(shell);
 		shell.open();
 		shell.layout();
 		while (!shell.isDisposed()) {

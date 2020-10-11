@@ -16,6 +16,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Text;
 
 import util.IOHelper;
+import util.SwtHelper;
 import util.DBHelper;
 import bean.Certificate;
 import biz.BizException;
@@ -58,6 +59,7 @@ public class CerWin extends Dialog {
 	 */
 	public Object open() {
 		createContents();
+		SwtHelper.center(shell);
 		shell.open();
 		shell.layout();
 		Display display = getParent().getDisplay();

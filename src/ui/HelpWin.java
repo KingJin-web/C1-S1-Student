@@ -16,6 +16,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.wb.swt.SWTResourceManager;
 
+import util.SwtHelper;
+
 public class HelpWin {
 
 	protected Shell shell;
@@ -43,6 +45,7 @@ public class HelpWin {
 	public void open() throws IOException {
 		Display display = Display.getDefault();
 		createContents();
+		SwtHelper.center(shell);
 		shell.open();
 		shell.layout();
 		while (!shell.isDisposed()) {

@@ -13,6 +13,7 @@ import org.eclipse.swt.widgets.Text;
 
 import bean.Student;
 import biz.AdminBiz;
+import util.SwtHelper;
 import util.SwtLabelPaintListner;
 
 import org.eclipse.swt.widgets.Button;
@@ -54,6 +55,7 @@ public class ModDialog extends Dialog {
 	 */
 	public Object open() {
 		createContents();
+		SwtHelper.center(shell);
 		shell.open();
 		shell.layout();
 		Display display = getParent().getDisplay();

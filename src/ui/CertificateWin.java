@@ -9,6 +9,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
 import bean.Certificate;
 import biz.BizException;
 import util.DBHelper;
+import util.SwtHelper;
 
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -63,6 +64,7 @@ public class CertificateWin {
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
+		SwtHelper.center(shell);
 		shell.open();
 		shell.layout();
 		while (!shell.isDisposed()) {

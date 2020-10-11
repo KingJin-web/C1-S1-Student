@@ -4,6 +4,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import swing2swt.layout.BorderLayout;
 import util.DBHelper;
+import util.SwtHelper;
 
 import org.eclipse.swt.widgets.Composite;
 
@@ -60,6 +61,7 @@ public class MainWin {
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
+		SwtHelper.center(shell);
 		shell.open();
 		shell.layout();
 		while (!shell.isDisposed()) {
@@ -187,8 +189,6 @@ public class MainWin {
 				} else {
 					index = findString(coo);
 				}
-
-				System.out.println(index);
 				query(text.getText(), text_1.getText(), text_2.getText(), index);
 
 			}
@@ -327,7 +327,7 @@ public class MainWin {
 						"" + stu.getSma() });
 
 			}
-
+ 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

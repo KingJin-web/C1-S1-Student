@@ -13,6 +13,7 @@ import biz.BizException;
 import biz.StuBiz;
 import swing2swt.layout.BorderLayout;
 import util.IOHelper;
+import util.SwtHelper;
 
 import org.eclipse.swt.widgets.Composite;
 
@@ -45,6 +46,8 @@ public class StudentCard {
 	private Text text_5;
 	private Text text_6;
 	private Text text_7;
+	
+	
 
 	/**
 	 * Launch the application.
@@ -67,6 +70,7 @@ public class StudentCard {
 	public void open() throws BizException {
 		Display display = Display.getDefault();
 		createContents();
+		SwtHelper.center(shell);
 		shell.open();
 		shell.layout();
 		while (!shell.isDisposed()) {
@@ -111,16 +115,17 @@ public class StudentCard {
 				fileselect.setFilterNames(new String[] { "文本文件 (*.jpg*)", "所有文件(*.*)" });// 设置扩展名
 				fileselect.setFilterExtensions(new String[] { "*.jpg", "*.*" });// 设置文件扩展名
 				url = fileselect.open();
-				fileName = IOHelper.retFileName(url);
+				fileName =IOHelper.retFileName(url);
 
 				try {
 
 					// IOHelper.copyFile(url, System.getProperty("user.dir") + "\\src\\img\\" +
 					// fileName);
-					IOHelper.copyFile(url, "D:\\stuImg\\" + fileName);
-					sb.updaeImg(fileName, name);
-					query(name);
-
+					if(fileName!=null && !"".equals(fileName)) {
+						IOHelper.copyFile(url, "D:\\stuImg\\" + fileName);
+						sb.updaeImg(fileName, name);
+						query(name);
+					}
 				} catch (IOException ioException) {
 					ioException.printStackTrace();
 				} catch (BizException e1) {

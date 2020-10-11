@@ -142,9 +142,9 @@ public class LoginWin {
 
 		Button btnNewButton = new Button(shell, SWT.NONE);
 		FormData fd_btnNewButton = new FormData();
-		fd_btnNewButton.bottom = new FormAttachment(100, -46);
-		fd_btnNewButton.left = new FormAttachment(0, 54);
 		fd_btnNewButton.right = new FormAttachment(0, 149);
+		fd_btnNewButton.top = new FormAttachment(0, 326);
+		fd_btnNewButton.left = new FormAttachment(0, 54);
 		btnNewButton.setLayoutData(fd_btnNewButton);
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -156,6 +156,7 @@ public class LoginWin {
 				String code = text.getText().trim();
 
 				try {
+
 					if (name == null || name.isEmpty()) {
 						SwtHelper.mssage("请输入用户名 !", shell);
 						return;
@@ -172,18 +173,28 @@ public class LoginWin {
 						SwtHelper.mssage("请输入验证码 !", shell);
 						return;
 					}
+
 					if (Code.equals(code.toUpperCase())) {
 						System.out.println("验证码正确");
 						if ((str.contains("学生")) && (sBiz.select(name, 1))) {
 							sBiz.login(name, pwd);
+							name = textNo.getText();
+							grtCode();
+							btnNewButton_2.setImage(SWTResourceManager.getImage(url));
 							LoginWin.this.shell.dispose();
 							new StudentCard().open();
 						} else if (str.contains("教师") && tBiz.select(name)) {
 							tBiz.login(name, pwd);
+							name = textNo.getText();
+							grtCode();
+							btnNewButton_2.setImage(SWTResourceManager.getImage(url));
 							LoginWin.this.shell.dispose();
 							new MainWin().open();
 						} else if (str.contains("管理员")) {
 							aBiz.login(name, pwd);
+							name = textNo.getText();
+							grtCode();
+							btnNewButton_2.setImage(SWTResourceManager.getImage(url));
 							LoginWin.this.shell.dispose();
 							new AdminWin().open();
 						}
@@ -191,14 +202,17 @@ public class LoginWin {
 						SwtHelper.mssage("验证码输入错误 !", shell);
 						return;
 					}
+//					name = textNo.getText();
+//					grtCode();
+//					btnNewButton_2.setImage(SWTResourceManager.getImage(url));
 
 				} catch (BizException e1) {
 					SwtHelper.mssage(e1.getMessage(), shell);
 					return;
 				} finally {
-					returnName();
-					grtCode();
-					btnNewButton_2.setImage(SWTResourceManager.getImage(url));
+//					name = textNo.getText();
+//					grtCode();
+//					btnNewButton_2.setImage(SWTResourceManager.getImage(url));
 				}
 			}
 		});
@@ -206,8 +220,8 @@ public class LoginWin {
 
 		Button btnNewButton_1 = new Button(shell, SWT.NONE);
 		FormData fd_btnNewButton_1 = new FormData();
-		fd_btnNewButton_1.top = new FormAttachment(btnNewButton, 0, SWT.TOP);
-		fd_btnNewButton_1.right = new FormAttachment(100, -60);
+		fd_btnNewButton_1.right = new FormAttachment(0, 332);
+		fd_btnNewButton_1.top = new FormAttachment(0, 326);
 		fd_btnNewButton_1.left = new FormAttachment(0, 237);
 		btnNewButton_1.setLayoutData(fd_btnNewButton_1);
 		btnNewButton_1.addSelectionListener(new SelectionAdapter() {
@@ -227,7 +241,7 @@ public class LoginWin {
 		button.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				// new PwdChangeWin(shell, SWT.NONE).open();
+				new PwdChangeWin(shell, SWT.NONE).open();
 			}
 		});
 
@@ -236,6 +250,10 @@ public class LoginWin {
 		button.setToolTipText("忘记密码");
 
 		Button button_1 = new Button(shell, SWT.NONE);
+		FormData fd_button_1 = new FormData();
+		fd_button_1.top = new FormAttachment(0, 357);
+		fd_button_1.left = new FormAttachment(0, 355);
+		button_1.setLayoutData(fd_button_1);
 		button_1.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -247,28 +265,30 @@ public class LoginWin {
 				}
 			}
 		});
-		FormData fd_button_1 = new FormData();
-		fd_button_1.bottom = new FormAttachment(100, -10);
-		fd_button_1.right = new FormAttachment(100);
-		button_1.setLayoutData(fd_button_1);
 		button_1.setImage(SWTResourceManager.getImage("C:\\Users\\82427\\Desktop\\img\\wenhao.jpg"));
 		button_1.setToolTipText("操作指南");
 
 		Label label_4 = new Label(shell, SWT.NONE);
 		FormData fd_label_4 = new FormData();
-		fd_label_4.bottom = new FormAttachment(btnNewButton, -48);
-		fd_label_4.left = new FormAttachment(label, 0, SWT.LEFT);
+		fd_label_4.top = new FormAttachment(0, 258);
+		fd_label_4.left = new FormAttachment(0, 65);
 		label_4.setLayoutData(fd_label_4);
 		label_4.setText("验证码");
 
 		text = new Text(shell, SWT.BORDER);
 		FormData fd_text = new FormData();
-		fd_text.right = new FormAttachment(label_4, 102, SWT.RIGHT);
-		fd_text.bottom = new FormAttachment(btnNewButton, -42);
-		fd_text.left = new FormAttachment(label_4, 15);
+		fd_text.right = new FormAttachment(0, 212);
+		fd_text.top = new FormAttachment(0, 258);
+		fd_text.left = new FormAttachment(0, 125);
 		text.setLayoutData(fd_text);
 
 		btnNewButton_2 = new Button(shell, SWT.NONE);
+		FormData fd_btnNewButton_2 = new FormData();
+		fd_btnNewButton_2.bottom = new FormAttachment(0, 286);
+		fd_btnNewButton_2.right = new FormAttachment(0, 357);
+		fd_btnNewButton_2.top = new FormAttachment(0, 250);
+		fd_btnNewButton_2.left = new FormAttachment(0, 237);
+		btnNewButton_2.setLayoutData(fd_btnNewButton_2);
 		btnNewButton_2.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -276,12 +296,6 @@ public class LoginWin {
 				btnNewButton_2.setImage(SWTResourceManager.getImage(url));
 			}
 		});
-		FormData fd_btnNewButton_2 = new FormData();
-		fd_btnNewButton_2.left = new FormAttachment(text, 51);
-		fd_btnNewButton_2.right = new FormAttachment(100, -22);
-		fd_btnNewButton_2.top = new FormAttachment(btnNewButton_1, -74, SWT.TOP);
-		fd_btnNewButton_2.bottom = new FormAttachment(btnNewButton_1, -38);
-		btnNewButton_2.setLayoutData(fd_btnNewButton_2);
 		// btnNewButton_2.setText("New Button");
 		btnNewButton_2.setImage(SWTResourceManager.getImage(url));
 		btnNewButton_2.addPaintListener(new PaintListener() {
@@ -299,17 +313,15 @@ public class LoginWin {
 			}
 		});
 		btnNewButton_2.setToolTipText("看不清？点击刷新 ");
-		
-				Label label_3 = new Label(shell, SWT.NONE);
-				label_3.setLayoutData(new FormData());
-				
-						FormData fd_label_3 = new FormData();
-						fd_label_3.top = new FormAttachment(0);
-						fd_label_3.left = new FormAttachment(0);
-						
-								label_3.setLayoutData(fd_label_3);
-								label_3.setImage(SWTResourceManager.getImage(LoginWin.class, "/imges/baishi.jpg"));
-								label_3.addPaintListener(new SwtLabelPaintListner());
+
+		Label label_3 = new Label(shell, SWT.NONE);
+		FormData fd_label_3 = new FormData();
+		fd_label_3.top = new FormAttachment(0);
+		fd_label_3.left = new FormAttachment(0);
+		label_3.setLayoutData(fd_label_3);
+		label_3.setLayoutData(new FormData());
+		label_3.setImage(SWTResourceManager.getImage(LoginWin.class, "/imges/baishi.jpg"));
+		label_3.addPaintListener(new SwtLabelPaintListner());
 
 	}
 

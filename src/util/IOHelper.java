@@ -117,7 +117,9 @@ public class IOHelper {
      * @return
      */
     public static String retFileName(String fName) {
-
+    	if(fName==null || "".equals(fName)) {
+    		return "";
+    	}
         File tempFile = new File(fName.trim());
         String fileName = tempFile.getName();
         System.out.println("fileName = " + fileName);

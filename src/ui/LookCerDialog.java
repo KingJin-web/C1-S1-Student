@@ -18,6 +18,7 @@ import org.eclipse.swt.widgets.Button;
 
 import bean.Certificate;
 import util.DBHelper;
+import util.SwtHelper;
 import util.SwtLabelPaintListner;
 
 import org.eclipse.swt.events.SelectionAdapter;
@@ -68,6 +69,7 @@ public class LookCerDialog extends Dialog {
 	 */
 	public Object open() {
 		createContents();
+		SwtHelper.center(shell);
 		shell.open();
 		shell.layout();
 		Display display = getParent().getDisplay();
