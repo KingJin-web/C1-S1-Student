@@ -46,16 +46,16 @@ public class EmailHelper {
         Transport transport = session.getTransport();
 
         //连接服务器
-        transport.connect("smtp.qq.com", "1261337209@qq.com", "evbmfmswfmxfjche");
+        transport.connect("smtp.qq.com", "发件人邮箱", "授权码");
 
         //创建邮件对象
         MimeMessage mimeMessage = new MimeMessage(session);
 
         //邮件发送人
-        mimeMessage.setFrom(new InternetAddress("1261337209@qq.com"));
+        mimeMessage.setFrom(new InternetAddress("发件人邮箱"));
 
         //邮件接收人
-        mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress("a1261337209@163.com"));
+        mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress("接收人邮箱"));
 
         //邮件标题
         mimeMessage.setSubject("Hello Mail");
